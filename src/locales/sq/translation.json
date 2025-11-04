@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "Sistemi i Kontrollit të Ashensorëve",
+    "description": "Simulim i planifikimit të shumë ashensorëve"
+  },
+  "elevator": {
+    "title": "Ashensori {{id}}",
+    "currentFloor": "Kati Aktual: {{floor}}",
+    "status": {
+      "idle": "Joaktiv",
+      "moving": "Në Lëvizje",
+      "stopped": "I Ndaluar",
+      "doorOpen": "Dera e Hapur"
+    },
+    "direction": {
+      "up": "Duke Ngjitur",
+      "down": "Duke Zbritur",
+      "idle": "Joaktiv"
+    },
+    "queue": "Radha: {{floors}}",
+    "noQueue": "Asnjë kërkesë në pritje"
+  },
+  "floor": {
+    "title": "Kati {{number}}",
+    "callUp": "Thirr Lart",
+    "callDown": "Thirr Poshtë",
+    "call": "Thirr Ashensorin"
+  },
+  "building": {
+    "title": "Ndërtesa {{id}}",
+    "floors": "{{count}} Kate",
+    "elevators": "{{count}} Ashensorë"
+  },
+  "controls": {
+    "addElevator": "Shto Ashensor",
+    "removeElevator": "Hiq Ashensor",
+    "reset": "Rivendos Të Gjitha",
+    "downloadSnapshot": "Shkarko Imazhin",
+    "language": "Gjuha",
+    "theme": "Tema"
+  },
+  "stats": {
+    "totalRequests": "Kërkesa Totale",
+    "averageWaitTime": "Koha Mesatare e Pritjes",
+    "activeElevators": "Ashensorë Aktivë"
+  }
+}
+

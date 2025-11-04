@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "Elevator Control System",
+    "description": "Multi-elevator scheduling simulation"
+  },
+  "elevator": {
+    "title": "Elevator {{id}}",
+    "currentFloor": "Current Floor: {{floor}}",
+    "status": {
+      "idle": "Idle",
+      "moving": "Moving",
+      "stopped": "Stopped",
+      "doorOpen": "Door Open"
+    },
+    "direction": {
+      "up": "Going Up",
+      "down": "Going Down",
+      "idle": "Idle"
+    },
+    "queue": "Queue: {{floors}}",
+    "noQueue": "No pending requests"
+  },
+  "floor": {
+    "title": "Floor {{number}}",
+    "callUp": "Call Up",
+    "callDown": "Call Down",
+    "call": "Call Elevator"
+  },
+  "building": {
+    "title": "Building {{id}}",
+    "floors": "{{count}} Floors",
+    "elevators": "{{count}} Elevators"
+  },
+  "controls": {
+    "addElevator": "Add Elevator",
+    "removeElevator": "Remove Elevator",
+    "reset": "Reset All",
+    "downloadSnapshot": "Download Snapshot",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "stats": {
+    "totalRequests": "Total Requests",
+    "averageWaitTime": "Avg Wait Time",
+    "activeElevators": "Active Elevators"
+  }
+}
+
