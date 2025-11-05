@@ -54,7 +54,7 @@ export const useElevatorStore = create<ElevatorStore>((set, get) => ({
       const id = `elevator-${i + 1}`;
       elevators[id] = {
         id,
-        currentFloor: 0, // Start at ground floor
+        currentFloor: 0, // nga qendra
         targetQueue: [],
         status: 'idle',
         direction: 'idle',
@@ -74,7 +74,7 @@ export const useElevatorStore = create<ElevatorStore>((set, get) => ({
       const elevator = state.elevators[elevatorId];
       if (!elevator) return state;
 
-      // Don't add if already in queue or is current floor
+      // nuk shtojme ne queue ne qofshin nese eshte ne queue ose eshte ne qender
       if (
         isFloorInQueue(elevator, floor) ||
         elevator.currentFloor === floor
@@ -98,7 +98,7 @@ export const useElevatorStore = create<ElevatorStore>((set, get) => ({
     const state = get();
     const elevatorsList = Object.values(state.elevators);
 
-    // Use scheduler to pick best elevator
+  
     const bestElevator = pickBestElevator(
       elevatorsList,
       floor,

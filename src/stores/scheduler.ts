@@ -1,34 +1,29 @@
-// Multi-elevator scheduler - picks best elevator for a request
 import type { Elevator, FloorNumber } from '../types';
 
-/**
- * Estimates the time (in ms) for an elevator to serve a floor request
- * Considers current queue and simulates walk-through
- */
+
 export function estimateTimeToServe(
   elevator: Elevator,
   requestFloor: FloorNumber,
   speedMsPerFloor: number,
   doorOpenMs: number
 ): number {
-  // If elevator has no queue, simple calculation
+  // nese nese nuk ka qe ne queue, thjesht llogaritja
   if (elevator.targetQueue.length === 0) {
     const distance = Math.abs(elevator.currentFloor - requestFloor);
     return distance * speedMsPerFloor;
   }
 
-  // Simulate walking through the queue
+  // simulojm duke kaluar ne queue
   let currentPosition = elevator.currentFloor;
   let totalTime = 0;
 
-  // Add time for all queued stops
+  // shtojme koheneee
   for (const queuedFloor of elevator.targetQueue) {
     const distance = Math.abs(currentPosition - queuedFloor);
     totalTime += distance * speedMsPerFloor + doorOpenMs;
     currentPosition = queuedFloor;
   }
 
-  // Add time from last queue stop to request floor
   const finalDistance = Math.abs(currentPosition - requestFloor);
   totalTime += finalDistance * speedMsPerFloor;
 
@@ -36,8 +31,7 @@ export function estimateTimeToServe(
 }
 
 /**
- * Picks the best elevator to serve a floor request
- * Uses estimated arrival time as primary metric
+ merr lifti me kohen mat shkurt , BESTELEVATOR
  */
 export function pickBestElevator(
   elevators: Elevator[],
@@ -60,12 +54,11 @@ export function pickBestElevator(
       doorOpenMs
     );
 
-    // Prefer elevator with shorter estimated time
+    // lifti ma i afert ne kohe
     if (estimatedTime < minTime) {
       minTime = estimatedTime;
       bestElevator = elevator;
     }
-    // Tie-breaker: prefer elevator with smaller queue
     else if (estimatedTime === minTime && bestElevator) {
       if (elevator.targetQueue.length < bestElevator.targetQueue.length) {
         bestElevator = elevator;
@@ -76,9 +69,6 @@ export function pickBestElevator(
   return bestElevator;
 }
 
-/**
- * Checks if a floor is already in the elevator's queue
- */
 export function isFloorInQueue(
   elevator: Elevator,
   floor: FloorNumber
@@ -86,15 +76,12 @@ export function isFloorInQueue(
   return elevator.targetQueue.includes(floor);
 }
 
-/**
- * Adds floor to queue if not already present
- */
 export function addFloorToQueue(
   queue: FloorNumber[],
   floor: FloorNumber
 ): FloorNumber[] {
   if (queue.includes(floor)) {
-    return queue; // Already in queue
+    return queue; 
   }
   return [...queue, floor];
 }

@@ -240,7 +240,7 @@ This project demonstrates:
 
 ## 🐛 Known Limitations
 
-1. **Audio**: Arrival sound not included (placeholder README provided)
+<!-- 1. **Audio**: Arrival sound not included (placeholder README provided) -->
 2. **Persistence**: State resets on page refresh (can add localStorage)
 3. **Analytics**: No usage tracking (can add Google Analytics)
 4. **Backend**: No server component (pure frontend simulation)

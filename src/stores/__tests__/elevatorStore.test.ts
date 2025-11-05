@@ -3,7 +3,7 @@ import { useElevatorStore } from '../elevatorStore';
 
 describe('ElevatorStore', () => {
   beforeEach(() => {
-    // Reset store before each test
+   
     const { result } = renderHook(() => useElevatorStore());
     act(() => {
       result.current.resetAll();
