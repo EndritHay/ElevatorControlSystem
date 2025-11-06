@@ -1,4 +1,4 @@
-// Zustand store for elevator state management
+// Zustand 
 import { create } from 'zustand';
 import type { Elevator, ElevatorId, FloorNumber } from '../types';
 import {
@@ -40,7 +40,7 @@ interface ElevatorStore {
 export const useElevatorStore = create<ElevatorStore>((set, get) => ({
   elevators: {},
   speedMsPerFloor: 500,
-  doorOpenMs: 800,
+  doorOpenMs: 3000,
   totalFloors: 10,
 
   initializeElevators: (
