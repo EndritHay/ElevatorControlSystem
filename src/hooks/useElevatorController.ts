@@ -58,11 +58,11 @@ export function useElevatorController(elevatorId: ElevatorId) {
       await animateMovement(startFloor, nextFloor, floorsToMove);
 
       store.updateElevatorStatus(elevatorId, 'stopped');
-      await wait(300);
+      await wait(1000);
 
       store.updateElevatorStatus(elevatorId, 'doorOpen');
       await wait(doorOpenMs);
-      await wait(100);
+      await wait(1000);
 
       isProcessingRef.current = false;
 

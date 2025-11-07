@@ -17,9 +17,16 @@ const FloorContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.surface};
   padding: 0 ${({ theme }) => theme.space[4]}px;
   position: relative;
+  gap: ${({ theme }) => theme.space[2]}px;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.surfaceLight};
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 8px;
+    height: 105px;
+    gap: 4px;
   }
 `;
 
@@ -29,6 +36,12 @@ const FloorNumber = styled.div`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.text};
   text-align: center;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    min-width: 40px;
+    font-size: 18px;
+  }
 `;
 
 const FloorLabel = styled.div`
@@ -36,10 +49,28 @@ const FloorLabel = styled.div`
   color: ${({ theme }) => theme.colors.textSecondary};
   margin-left: ${({ theme }) => theme.space[3]}px;
   flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const CallButton = styled(Button)`
   margin-left: auto;
+  min-width: 80px;
+  flex-shrink: 0;
+  
+  @media (max-width: 768px) {
+    margin-left: auto;
+    min-width: 90px;
+    max-width: 110px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+  }
 `;
 
 export const Floor: React.FC<FloorProps> = ({
@@ -61,7 +92,7 @@ export const Floor: React.FC<FloorProps> = ({
       </FloorLabel>
       <CallButton
         variant="primary"
-        size="sm"
+        size="md"
         onClick={handleCall}
         aria-label={t('floor.call')}
       >
