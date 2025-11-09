@@ -9,6 +9,24 @@ export function useElevatorController(elevatorId: ElevatorId) {
 
   const isProcessingRef = useRef(false);
   const animationFrameRef = useRef<number>();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Initialize audio
+  useEffect(() => {
+    try {
+      audioRef.current = new Audio('/sounds/arrival.mp3');
+      audioRef.current.volume = 0.3; // Set volume to 30%
+    } catch (error) {
+      console.warn('Failed to load arrival sound:', error);
+    }
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!elevator) return;
@@ -61,6 +79,15 @@ export function useElevatorController(elevatorId: ElevatorId) {
       await wait(1000);
 
       store.updateElevatorStatus(elevatorId, 'doorOpen');
+      
+      // Play arrival sound
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0; // Reset to start
+        audioRef.current.play().catch((error) => {
+          console.warn('Failed to play arrival sound:', error);
+        });
+      }
+      
       await wait(doorOpenMs);
       await wait(1000);
 

@@ -64,12 +64,9 @@ const CallButton = styled(Button)`
   flex-shrink: 0;
   
   @media (max-width: 768px) {
-    margin-left: auto;
-    min-width: 90px;
-    max-width: 110px;
-    padding: 10px 14px;
-    font-size: 14px;
-    font-weight: 600;
+    min-width: 70px;
+    padding: 8px 10px;
+    font-size: 13px;
   }
 `;
 

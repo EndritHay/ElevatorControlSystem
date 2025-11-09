@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from './Button';
 import { useElevatorStore } from '../stores/elevatorStore';
 import translator from '../i18n/translator';
+import { downloadScreenshot } from '../utils/downloadImage';
 
 const PanelContainer = styled.div`
   display: flex;
@@ -13,6 +14,11 @@ const PanelContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.surface};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   box-shadow: ${({ theme }) => theme.shadows.md};
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => theme.space[4]}px;
+  }
 `;
 
 const ControlGroup = styled.div`
@@ -24,6 +30,7 @@ const ControlGroup = styled.div`
 export const ControlPanel: React.FC = () => {
   const t = translator.useT();
   const resetAll = useElevatorStore((state) => state.resetAll);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const handleReset = () => {
     if (
@@ -35,11 +42,29 @@ export const ControlPanel: React.FC = () => {
     }
   };
 
+  const handleDownloadImage = async () => {
+    setIsDownloading(true);
+    try {
+      await downloadScreenshot('root', 'elevator-system-snapshot.png');
+    } catch (error) {
+      console.error('Download failed:', error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   return (
     <PanelContainer>
       <ControlGroup>
         <Button variant="outline" onClick={handleReset}>
           🔄 {t('controls.reset')}
+        </Button>
+        <Button 
+          variant="primary" 
+          onClick={handleDownloadImage}
+          disabled={isDownloading}
+        >
+          {isDownloading ? '⏳ Downloading...' : '📥 Download Image'}
         </Button>
       </ControlGroup>
     </PanelContainer>

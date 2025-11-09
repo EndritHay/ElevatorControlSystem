@@ -21,6 +21,10 @@ const ShaftContainer = styled.div<{ $height: number }>`
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radii.md};
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    width: 100px;
+  }
 `;
 
 const ShaftBackground = styled.div`

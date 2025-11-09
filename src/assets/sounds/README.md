@@ -1,13 +1,14 @@
 # Audio Assets
 
-This directory contains sound effects for the elevator system.
+This directory contains documentation for sound effects in the elevator system.
 
-## Adding the arrival sound
+## Arrival Sound
 
-To add an arrival "ding" sound:
+An arrival "ding" sound is configured to play when elevators arrive at floors.
 
-1. Place a short audio file (5-10 KB recommended) named `arrival.mp3` or `arrival.wav` in this directory
-2. The sound will play when an elevator arrives at a floor and opens its doors
+**Location:** The audio file is served from `public/sounds/arrival.mp3`
+
+**Usage:** The sound automatically plays when an elevator arrives at a floor and opens its doors.
 
 ## Recommended specifications
 
@@ -22,16 +23,27 @@ To add an arrival "ding" sound:
 - [Zapsplat](https://www.zapsplat.com/)
 - [SoundBible](https://soundbible.com/)
 
-## Usage in code
+## Implementation
 
 The sound is played in the `useElevatorController` hook when the elevator status changes to `doorOpen`.
 
-Example implementation (optional):
+**Current implementation:**
+- Audio file is loaded when the hook initializes
+- Volume is set to 30% for a pleasant experience
+- Sound plays automatically when doors open
+- Errors are caught and logged to console
+
+**Code location:** `src/hooks/useElevatorController.ts`
+
 ```typescript
-const audio = new Audio('/src/assets/sounds/arrival.mp3');
-audio.volume = 0.3;
-audio.play().catch(() => {
-  // Handle audio play failure (user interaction required on some browsers)
+// Audio is initialized once
+const audioRef = useRef<HTMLAudioElement | null>(null);
+audioRef.current = new Audio('/sounds/arrival.mp3');
+audioRef.current.volume = 0.3;
+
+// Played when doors open
+audioRef.current.play().catch((error) => {
+  console.warn('Failed to play arrival sound:', error);
 });
 ```
 

@@ -26,6 +26,11 @@ const CarContainer = styled(motion.div)<{ $yPosition: number }>`
   box-shadow: ${({ theme }) => theme.shadows.lg};
   transform: translateY(${({ $yPosition }) => $yPosition}px);
   z-index: 10;
+
+  @media (max-width: 768px) {
+    height: 70px;
+    padding: ${({ theme }) => theme.space[1]}px;
+  }
 `;
 
 const StatusIndicator = styled.div<{ $status: Elevator['status'] }>`
@@ -69,6 +74,11 @@ const StatusIndicator = styled.div<{ $status: Elevator['status'] }>`
       opacity: 0.5;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 10px;
+    height: 10px;
+  }
 `;
 
 const ElevatorInfo = styled.div`
@@ -83,6 +93,10 @@ const FloorDisplay = styled.div`
   font-size: ${({ theme }) => theme.fontSizes[3]}px;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.primary};
+
+  @media (max-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSizes[2]}px;
+  }
 `;
 
 const StatusText = styled.div`
@@ -91,6 +105,10 @@ const StatusText = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.space[1]}px;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+  }
 `;
 
 const QueueText = styled.div`
@@ -100,6 +118,10 @@ const QueueText = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
 export const ElevatorCar: React.FC<ElevatorCarProps> = ({
@@ -111,9 +133,6 @@ export const ElevatorCar: React.FC<ElevatorCarProps> = ({
   // Calculate Y position based on current floor
   const floorHeight = 100; // Match theme.elevator.floorHeight
   const yPosition = (totalFloors - 1 - elevator.currentFloor) * floorHeight + 10;
-  
-  // Debug: Log position updates
-  console.log(`[${elevator.id}] Render - Floor: ${elevator.currentFloor.toFixed(2)}, Y: ${yPosition}px`);
 
   const statusText = t(`elevator.status.${elevator.status}`);
   const queueDisplay = elevator.targetQueue.length

@@ -11,11 +11,19 @@ const HeaderContainer = styled.header`
   background-color: ${({ theme }) => theme.colors.surface};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   box-shadow: ${({ theme }) => theme.shadows.md};
+
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => theme.space[4]}px;
+  }
 `;
 
 const Title = styled.h1`
   font-size: ${({ theme }) => theme.fontSizes[5]}px;
   color: ${({ theme }) => theme.colors.text};
+
+  @media (max-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSizes[4]}px;
+  }
 `;
 
 const Controls = styled.div`

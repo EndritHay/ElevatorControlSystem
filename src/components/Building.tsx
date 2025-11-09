@@ -12,6 +12,13 @@ const BuildingContainer = styled.div`
   padding: ${({ theme }) => theme.space[6]}px;
   max-width: 1400px;
   margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => theme.space[3]}px;
+    gap: ${({ theme }) => theme.space[2]}px;
+    max-width: 100%;
+    overflow-x: auto;
+  }
 `;
 
 const FloorsColumn = styled.div`
@@ -20,8 +27,12 @@ const FloorsColumn = styled.div`
   flex-direction: column-reverse;
   border: 2px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radii.lg};
-  overflow: hidden;
+  overflow: visible;
   background-color: ${({ theme }) => theme.colors.surface};
+  
+  @media (max-width: 768px) {
+    min-width: 300px;
+  }
 `;
 
 const ElevatorsColumn = styled.div`
@@ -31,6 +42,11 @@ const ElevatorsColumn = styled.div`
   background-color: ${({ theme }) => theme.colors.surface};
   border: 2px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radii.lg};
+  
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => theme.space[2]}px;
+    gap: ${({ theme }) => theme.space[2]}px;
+  }
 `;
 
 const BuildingTitle = styled.h2`
@@ -45,6 +61,11 @@ const BuildingTitle = styled.h2`
   border-radius: ${({ theme }) => theme.radii.md};
   box-shadow: ${({ theme }) => theme.shadows.md};
   z-index: 100;
+  
+  @media (max-width: 768px) {
+    font-size: ${({ theme }) => theme.fontSizes[3]}px;
+    padding: ${({ theme }) => theme.space[2]}px ${({ theme }) => theme.space[3]}px;
+  }
 `;
 
 export const Building: React.FC = () => {

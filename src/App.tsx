@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { Header } from './components/Header';
 import { Building } from './components/Building';
@@ -16,6 +16,12 @@ const Main = styled.main`
   flex: 1;
   padding: ${({ theme }) => theme.space[6]}px ${({ theme }) => theme.space[4]}px;
   position: relative;
+  padding-bottom: ${({ theme }) => theme.space[8]}px;
+  
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => theme.space[4]}px ${({ theme }) => theme.space[2]}px;
+    padding-bottom: ${({ theme }) => theme.space[8]}px;
+  }
 `;
 
 function App() {
